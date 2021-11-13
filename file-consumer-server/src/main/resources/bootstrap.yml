@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: default
+  cloud:
+    config:
+      uri: http://localhost:8888
+      enabled: true
+  application:
+    name: fileconsumerservice
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: saber
+    password: saber
+    virtual-host: /itcast
+logging:
+  level:
+    root: info
+    com.eyescloud: debug
+

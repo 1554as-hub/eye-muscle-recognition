@@ -1,0 +1,64 @@
+spring:
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/eyescloud?serverTimezone=Asia/Shanghai
+    username: saber
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    servlet:
+      multipart:
+        enabled: true
+        #单个文件的上传大小
+        max-file-size: 1024MB
+        #设置总上传的文件大小
+        max-request-size: 10240MB
+        location: D:\c
+    rabbitmq:
+      host: 127.0.0.1
+      port: 5672
+      username: saber
+      password: saber
+      virtual-host: /itcast
+
+
+server:
+  port: 8808
+  servlet:
+    context-path: /fileupload
+
+file:
+  pathPre: http://localhost:8807/pic/
+  #  访问静态资源的开始路径
+  staticAccessPath: /pic/**
+  #  文件上传的路径
+  uploadFolder: file:D:\\c\\upload\\
+  # bz 的基本命令
+  zipsoftPath: C:\\Program Files\\Bandizip\\bz.exe
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+security:
+  oauth2:
+    client:
+      grant-type: password
+      scope: webclient
+      id: eagleeye
+      client-secret: thisissecret
+      user-authorization-uri: http://localhost:7171/auth/oauth/authoriz
+      access-token-uri: http://localhost:7171/auth/oauth/token
+    resource:
+      id: fileuploadservice
+      userInfoUri: http://localhost:7171/auth/user
+
+
